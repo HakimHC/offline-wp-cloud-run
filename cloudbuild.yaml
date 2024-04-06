@@ -1,4 +1,3 @@
-# This is my first Code Build config
 steps:
-  - name: 'ubuntu'
-    args: ['echo', 'hola']
+- name: 'ubuntu'
+  args: [ 'echo', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/my-image-${SHORT_SHA}']

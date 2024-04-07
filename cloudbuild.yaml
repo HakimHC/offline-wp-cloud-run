@@ -18,3 +18,6 @@ steps:
     - --region=${_LOCATION}
     - --delivery-pipeline=${_PIPELINE}
     - --images=offline-wp=${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}
+
+options:
+  logging: CLOUD_LOGGING_ONLY

@@ -13,7 +13,7 @@ steps:
     - deploy
     - releases
     - create
-    - test-release-001
+    - test-release-${SHORT_SHA}
     - --project=${_PROJECT_ID}
     - --region=${_LOCATION}
     - --delivery-pipeline=${_PIPELINE}

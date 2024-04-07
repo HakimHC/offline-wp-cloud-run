@@ -1,5 +1,20 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
+  id: 'Build image'
   args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}', '.']
 
-images: ['${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}']
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Push image to registry'
+  args: ['push', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}']
+
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'gcloud'
+  args:
+    - deploy
+    - releases
+    - create
+    - test-release-001
+    - --project=${_PROJECT_ID}
+    - --region=${_LOCATION}
+    - --delivery-pipeline=${_PIPELINE}
+    - --images=offline-wp=${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}

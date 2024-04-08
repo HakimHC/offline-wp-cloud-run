@@ -1,5 +1,13 @@
-FROM nginx:latest
+# FROM nginx:latest
+#
+# RUN sed -i "s/80/8080/g" /etc/nginx/conf.d/default.conf
+#
+# ENV A=l
 
-RUN sed -i "s/80/8080/g" /etc/nginx/conf.d/default.conf
+FROM adminer:standalone
 
-ENV A=l
+ENV ADMINER_DEFAULT_SERVER=mysql
+EXPOSE 8080
+
+CMD ["php", "-S", "[::]:8080", "-t", "/var/www/html"]
+

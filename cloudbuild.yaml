@@ -1,27 +1,23 @@
 steps:
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+- name: 'ubutu'
   id: 'test1'
   entrypoint: 'bash'
   args:
   - '-c'
   - |
-      echo hola > test.txt
+      echo \$VPC > test.txt
 
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  id: 'test2'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-      cat test.txt
-
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+- name: 'ubuntu'
   id: 'test3'
   entrypoint: 'bash'
   args:
   - '-c'
   - |
+      apt-get update && apt-get install -y gettext-base
       envsubst test.txt
+  env:
+    - 'VPC=${_VPC}'
+
 
 # - name: 'gcr.io/cloud-builders/docker'
 #   id: 'Build image'

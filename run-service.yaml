@@ -4,6 +4,10 @@ metadata:
   name: deploy-run-service
 spec:
   template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: 0
+        autoscaling.knative.dev/maxScale: 5
     spec:
       containers:
       - image: offline-wp

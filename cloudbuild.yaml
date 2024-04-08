@@ -1,5 +1,5 @@
 steps:
-- name: 'ubutu'
+- name: 'ubuntu'
   id: 'test1'
   entrypoint: 'bash'
   args:

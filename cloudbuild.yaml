@@ -1,23 +1,47 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  id: 'Build image'
-  args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}', '.']
-
-- name: 'gcr.io/cloud-builders/docker'
-  id: 'Push image to registry'
-  args: ['push', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  id: 'test1'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+      echo hola > test.txt
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'gcloud'
+  id: 'test2'
+  entrypoint: 'bash'
   args:
-    - deploy
-    - releases
-    - create
-    - test-release-${SHORT_SHA}
-    - --project=${_PROJECT_ID}
-    - --region=${_LOCATION}
-    - --delivery-pipeline=${_PIPELINE}
-    - --images=offline-wp=${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}
+  - '-c'
+  - |
+      cat test.txt
+
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  id: 'test2'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+      envsubst test.txt
+
+# - name: 'gcr.io/cloud-builders/docker'
+#   id: 'Build image'
+#   args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}', '.']
+#
+# - name: 'gcr.io/cloud-builders/docker'
+#   id: 'Push image to registry'
+#   args: ['push', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}']
+#
+# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#   entrypoint: 'gcloud'
+#   args:
+#     - deploy
+#     - releases
+#     - create
+#     - test-release-${SHORT_SHA}
+#     - --project=${_PROJECT_ID}
+#     - --region=${_LOCATION}
+#     - --delivery-pipeline=${_PIPELINE}
+#     - --images=offline-wp=${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}
 
 options:
   logging: CLOUD_LOGGING_ONLY

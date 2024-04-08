@@ -16,7 +16,7 @@ steps:
       cat test.txt
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  id: 'test2'
+  id: 'test3'
   entrypoint: 'bash'
   args:
   - '-c'

@@ -5,7 +5,7 @@ steps:
   args:
   - '-c'
   - |
-      echo \\$VPC > test.txt
+      echo $$VPC > test.txt
 
 - name: 'ubuntu'
   id: 'test3'

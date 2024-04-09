@@ -10,6 +10,7 @@ spec:
         autoscaling.knative.dev/maxScale: 10
         run.googleapis.com/vpc-access-connector: 'internal-net'
     spec:
+      serviceAccountName: "cloud-run-account@jalal2024.iam.gserviceaccount.com"
       containers:
       - image: offline-wp
         env:

@@ -8,7 +8,8 @@ wp config create \
 	 --dbname=$DB_DATABASE \
 	  --dbuser=$DB_USER \
 	  --dbpass=$DB_PASSWORD \
-	  --dbhost=$DB_HOST
+	  --dbhost=$DB_HOST \
+	  --allow-root
 
 
 echo "define('FORCE_SSL_ADMIN', true);" >> wp-config.php

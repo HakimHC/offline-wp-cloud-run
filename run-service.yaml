@@ -14,7 +14,7 @@ spec:
       containers:
       - image: offline-wp
         ports:
-        - containerPort: 443
+        - containerPort: 80
         env:
         - name: DB_HOST
           valueFrom:

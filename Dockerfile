@@ -4,10 +4,15 @@
 #
 # ENV A=k
 
-FROM adminer:standalone
+# FROM adminer:standalone
+#
+# ENV ADMINER_DEFAULT_SERVER=mysql
+# EXPOSE 8080
+#
+# CMD ["php", "-S", "[::]:8080", "-t", "/var/www/html"]
+#
 
-ENV ADMINER_DEFAULT_SERVER=mysql
-EXPOSE 8080
+FROM wordpress:latest
 
-CMD ["php", "-S", "[::]:8080", "-t", "/var/www/html"]
+EXPOSE 80
 

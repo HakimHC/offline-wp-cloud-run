@@ -13,6 +13,8 @@ spec:
       serviceAccountName: "cloud-run-account@jalal2024.iam.gserviceaccount.com"
       containers:
       - image: offline-wp
+        ports:
+        - containerPort: 80
         env:
         - name: DB_HOST
           valueFrom:

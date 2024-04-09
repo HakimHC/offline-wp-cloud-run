@@ -12,3 +12,9 @@ spec:
     spec:
       containers:
       - image: offline-wp
+        env:
+        - name: DB_HOST
+          valueFrom:
+              secretKeyRef:
+                key: just-testing
+                version: 1

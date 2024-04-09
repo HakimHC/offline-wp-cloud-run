@@ -21,3 +21,23 @@ spec:
               secretKeyRef:
                 key: 1
                 name: just-testing
+        - name: DB_USER
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: just-testing
+        - name: DB_PASSWORD
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: just-testing
+        - name: DB_PORT
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: just-testing
+        - name: DB_DATABASE
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: just-testing

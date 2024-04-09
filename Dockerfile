@@ -12,7 +12,15 @@
 # CMD ["php", "-S", "[::]:8080", "-t", "/var/www/html"]
 #
 
+# FROM wordpress:latest
+#
+# EXPOSE 80
+#
+
 FROM wordpress:latest
 
-EXPOSE 80
+COPY custom-entrypoint.sh .
 
+RUN chmod +x custom-entrypoint.sh
+
+CMD ["./custom-entrypoint.sh"]

@@ -19,8 +19,10 @@
 
 FROM wordpress:latest
 
-COPY custom-entrypoint.sh .
+COPY custom-entrypoint.sh /
 
-RUN chmod +x custom-entrypoint.sh
+RUN chmod +x /custom-entrypoint.sh
 
-CMD ["./custom-entrypoint.sh"]
+USER root
+
+CMD ["/custom-entrypoint.sh"]

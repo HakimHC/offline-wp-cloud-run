@@ -4,6 +4,11 @@ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.pha
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
 
+echo "host: $DB_HOST"
+echo "user: $DB_USER"
+echo "pass: $DB_PASSWORD"
+echo "db: $DB_DATABASE"
+
 wp core download --allow-root
 
 wp config create \

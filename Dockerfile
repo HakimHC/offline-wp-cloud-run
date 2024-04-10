@@ -1,28 +1,17 @@
-# FROM nginx:latest
-#
-# RUN sed -i "s/80/8080/g" /etc/nginx/conf.d/default.conf
-#
-# ENV A=k
+FROM php:8.0-apache
 
-# FROM adminer:standalone
-#
-# ENV ADMINER_DEFAULT_SERVER=mysql
-# EXPOSE 8080
-#
-# CMD ["php", "-S", "[::]:8080", "-t", "/var/www/html"]
-#
+RUN apt-get update && apt-get upgrade -yy \
+    && apt-get install --no-install-recommends apt-utils libjpeg-dev libpng-dev libwebp-dev \
+    libzip-dev zlib1g-dev libfreetype6-dev supervisor zip \
+    unzip software-properties-common -yy \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# FROM wordpress:latest
-#
-# EXPOSE 80
-#
+RUN docker-php-ext-install zip \
+    && docker-php-ext-install mysqli pdo pdo_mysql \
+    && docker-php-ext-install exif \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-install -j "$(nproc)" gd \
+    && a2enmod rewrite
 
-FROM wordpress:latest
-
-COPY custom-entrypoint.sh /
-
-RUN chmod +x /custom-entrypoint.sh
-
-USER root
-
-CMD ["/custom-entrypoint.sh"]
+WORKDIR /var/www/html
+COPY ./app /var/www/html/ 

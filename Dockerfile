@@ -1,3 +1,3 @@
 FROM wordpress:latest
 
-ENV a=m
+ENV a=0

@@ -1,3 +1,3 @@
 FROM wordpress:latest
 
-ENV a=1
+ENV a=LETSGO

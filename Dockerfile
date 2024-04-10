@@ -1,3 +1,3 @@
 FROM wordpress:latest
 
-ENV a=jaj
+ENV a=pleasework

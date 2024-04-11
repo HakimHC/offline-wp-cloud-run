@@ -8,11 +8,12 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 	chmod +x wp-cli.phar && \
 	mv wp-cli.phar /usr/local/bin/wp
 
-RUN wp core download --allow-root --path="/var/www/html"
-RUN wp theme install --allow-root --activate twentytwentyone --path="/var/www/html"
-
-
 COPY wp-config.php /var/www/html/wp-config.php
+
+RUN wp core download --allow-root 
+#RUN wp theme install --allow-root --activate twentytwentyone --path="/var/www/html"
+
+
 
 # COPY entrypoint.sh /entrypoint.sh
 # RUN chmod +x /entrypoint.sh

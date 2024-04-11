@@ -9,7 +9,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 	mv wp-cli.phar /usr/local/bin/wp
 
 RUN wp core download --allow-root --path="/var/www/html"
-RUN wp theme install --activate twentytwentyone --path=/"/var/www/html"
+RUN wp theme install --allow-root --activate twentytwentyone --path=/"/var/www/html"
 
 
 COPY wp-config.php /var/www/html/wp-config.php

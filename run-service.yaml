@@ -17,7 +17,7 @@ spec:
         - containerPort: 80
         resources:
           limits:
-            memory: "512M"
+            memory: "1G"
         env:
         - name: DB_HOST
           valueFrom:

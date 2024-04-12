@@ -1,5 +1,5 @@
 #! /bin/bash
 
-wp theme activate twentytwentythree --allow-root
+wp theme activate --allow-root twentytwentythree
 
-exec "$@"
+exec apache2-foreground

@@ -10,4 +10,6 @@ chown -R nobody:nogroup /var/www/html/wp-content/uploads
 chmod -R 777 /var/www/html/wp-content/uploads/simply-static
 chown -R www-data:www-data /var/www/html/wp-content/uploads/simply-static/
 
+echo "add_filter( 'ssp_single_auto_export','__return_true' );" >> wp-includes/functions.php
+
 exec apache2-foreground

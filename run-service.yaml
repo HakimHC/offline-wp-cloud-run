@@ -15,6 +15,9 @@ spec:
       - image: offline-wp
         ports:
         - containerPort: 80
+        resources:
+          limits:
+            memory: 512
         env:
         - name: DB_HOST
           valueFrom:

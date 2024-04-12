@@ -44,3 +44,23 @@ spec:
               secretKeyRef:
                 key: 1
                 name: DB_DATABASE
+        - name: SSP_GITHUB_TOKEN
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: SSP_GITHUB_TOKEN
+        - name: SSP_GITHUB_USER
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: SSP_GITHUB_USER
+        - name: SSP_GITHUB_REPO
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: SSP_GITHUB_REPO
+        - name: SSP_GITHUB_BRANCH
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: SSP_GITHUB_BRANCH

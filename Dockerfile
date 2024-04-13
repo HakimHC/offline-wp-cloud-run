@@ -6,8 +6,9 @@ COPY simply-static-pro.zip /
 
 
 # ================== INSTALL GCLOUD ========================
-RUN apt-get update && apt-get install -y python3
-RUN curl -sSL https://sdk.cloud.google.com | bash
+#RUN apt-get update && apt-get install -y python3
+#RUN curl -sSL https://sdk.cloud.google.com | bash
+#ENV PATH="$PATH:/root/google-cloud-sdk/bin"
 # ==========================================================
 
 COPY wp-config.php ./wp-config.php

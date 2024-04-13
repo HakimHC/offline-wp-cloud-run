@@ -1,6 +1,6 @@
 #! /bin/bash
 
-gcloud run services list
+#gcloud run services list
 
 wp theme activate --allow-root twentytwentythree
 wp plugin install --allow-root --activate simply-static

@@ -4,7 +4,7 @@ WORKDIR /var/www/html
 
 COPY simply-static-pro.zip /
 
-COPY wp-config.php .
+COPY wp-config.php ./wp-config.php
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
 	chmod +x wp-cli.phar && \

@@ -18,7 +18,7 @@ echo "DOMAIN NAME: '${domain_name}'"|cat -A
 domain_name="$(echo -e "${domain_name}" | tr -d '[:space:]')"
 
 wp core install --allow-root \
-	--url="${domain_name}" \
+	--url=${domain_name} \
 	--title="Altostratus Wordpress Blog" \
 	--admin_user="admin" \
 	--admin_email="admin@bootcamp.altostratus.es"

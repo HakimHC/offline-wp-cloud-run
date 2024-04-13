@@ -98,10 +98,4 @@ if [[ "$1" == * ]] || [ "$1" = 'php-fpm' ]; then
 	fi
 fi
 
-pwd
-pwd
-pwd
-
-ls -la
-
 exec "$@"

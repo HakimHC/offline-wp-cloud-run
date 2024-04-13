@@ -1,6 +1,19 @@
 #! /bin/bash
 
-#gcloud run services list
+get_cloud_run_domain_name() {
+	curl \
+	-d "{\"service_name\": \"$SERVICE_NAME\"}" \
+	-H "Content-Type: application/json" \
+	$DOMAIN_FUNCTION_URL 2>/dev/null | jq -r ".service_url"
+}
+
+domain_name="$(get_cloud_run_domain_name)"
+
+wp core install --allow-root \
+	--url="$domain_name" \
+	--title="Altostratus Wordpress Blog" \
+	--admin_user="admin" \
+	--admin_email="admin@bootcamp.altostratus.es"
 
 wp theme activate --allow-root twentytwentythree
 wp plugin install --allow-root --activate simply-static

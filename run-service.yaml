@@ -64,3 +64,13 @@ spec:
               secretKeyRef:
                 key: 1
                 name: SSP_GITHUB_BRANCH
+        - name: DOMAIN_FUNCTION_URL
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: DOMAIN_FUNCTION_URL
+        - name: SERVICE_NAME
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: SERVICE_NAME

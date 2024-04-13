@@ -4,10 +4,12 @@ get_cloud_run_domain_name() {
 	curl \
 	-d "{\"service_name\": \"$SERVICE_NAME\"}" \
 	-H "Content-Type: application/json" \
-	$DOMAIN_FUNCTION_URL 2>/dev/null | jq -r ".service_url"
+	$DOMAIN_FUNCTION_URL | jq -r ".service_url"
 }
 
 domain_name="$(get_cloud_run_domain_name)"
+
+echo "DOMAIN NAME: ${domain_name}"
 
 wp core install --allow-root \
 	--url="$domain_name" \

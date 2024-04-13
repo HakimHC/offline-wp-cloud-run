@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-echo hola
-
 if [[ "$1" == * ]] || [ "$1" = 'php-fpm' ]; then
 	uid="$(id -u)"
 	gid="$(id -g)"

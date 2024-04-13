@@ -4,6 +4,12 @@ WORKDIR /var/www/html
 
 COPY simply-static-pro.zip /
 
+
+# ================== INSTALL GCLOUD ========================
+RUN apt-get update && apt-get install -y python3
+RUN curl -sSL https://sdk.cloud.google.com | bash
+# ==========================================================
+
 COPY wp-config.php ./wp-config.php
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \

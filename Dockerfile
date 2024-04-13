@@ -21,3 +21,4 @@ ENTRYPOINT ["/wp-docker-entrypoint.sh"]
 CMD ["/entrypoint.sh"]
 
 
+

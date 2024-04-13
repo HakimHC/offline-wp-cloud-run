@@ -9,7 +9,7 @@ get_cloud_run_domain_name() {
 
 domain_name="$(get_cloud_run_domain_name)"
 
-wp core install --allow-root --url $domain_name --title="Altostratus Wordpress Blog" \
+wp core install --allow-root --url=$domain_name --title="Altostratus Wordpress Blog" \
 	--admin_user="admin" \
 	--admin_email="admin@bootcamp.altostratus.es"
 

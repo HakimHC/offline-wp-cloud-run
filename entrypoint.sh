@@ -6,18 +6,10 @@ get_cloud_run_domain_name() {
 	-H "Content-Type: application/json" \
 	"$DOMAIN_FUNCTION_URL" | jq -r ".service_url" | tr -d "\n"
 }
-curl \
--d "{\"service_name\": \"$SERVICE_NAME\"}" \
--H "Content-Type: application/json" \
-"$DOMAIN_FUNCTION_URL"
 
 domain_name="$(get_cloud_run_domain_name)"
 
-echo "DOMAIN NAME: '${domain_name%?}'"|cat -A
-
-wp core install --allow-root \
-	--url="${domain_name}" \
-	--title="Altostratus Wordpress Blog" \
+wp core install --allow-root --url $domain_name --title="Altostratus Wordpress Blog" \
 	--admin_user="admin" \
 	--admin_email="admin@bootcamp.altostratus.es"
 

@@ -24,6 +24,8 @@ RUN chmod +x /entrypoint.sh
 COPY wp-docker-entrypoint.sh /wp-docker-entrypoint.sh
 RUN chmod +x /wp-docker-entrypoint.sh
 
+ENV A=B
+
 ENTRYPOINT ["/wp-docker-entrypoint.sh"]
 CMD ["/entrypoint.sh"]
 

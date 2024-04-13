@@ -20,5 +20,3 @@ RUN chmod +x /wp-docker-entrypoint.sh
 ENTRYPOINT ["/wp-docker-entrypoint.sh"]
 CMD ["/entrypoint.sh"]
 
-
-

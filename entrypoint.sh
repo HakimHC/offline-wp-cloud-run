@@ -6,6 +6,10 @@ get_cloud_run_domain_name() {
 	-H "Content-Type: application/json" \
 	"$DOMAIN_FUNCTION_URL" | jq -r ".service_url"
 }
+curl \
+-d "{\"service_name\": \"$SERVICE_NAME\"}" \
+-H "Content-Type: application/json" \
+"$DOMAIN_FUNCTION_URL"
 
 domain_name="$(get_cloud_run_domain_name)"
 

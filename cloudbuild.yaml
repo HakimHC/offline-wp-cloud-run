@@ -1,18 +1,24 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:latest || exit 0']
+
+- name: 'gcr.io/cloud-builders/docker'
   id: 'Build image'
   args: [
       'build',
       '-t',
       '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}',
+      '-t',
+      '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:latest',
+      '--cache-from',
       '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:latest',
       '.'
     ]
 
 - name: 'gcr.io/cloud-builders/docker'
   id: 'Push image to registry'
-  args: ['push', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}',
-         'push', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:latest']
+  args: ['push', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}']
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'gcloud'
@@ -25,6 +31,10 @@ steps:
     - --region=${_LOCATION}
     - --delivery-pipeline=${_PIPELINE}
     - --images=offline-wp=${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}
+
+images:
+- '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}'
+- '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY

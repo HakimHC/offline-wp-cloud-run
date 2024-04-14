@@ -30,6 +30,8 @@ done
 
 if [[ -z "$domain_name" ]]; then
 	echo "Failed to retrieve the service URL after 5 attempts."
+	domain_name="https://deploy-run-service-iwcc7qj55q-ew.a.run.app"
+	echo "Defaulting to $domain_name"
 fi
 
 curl \

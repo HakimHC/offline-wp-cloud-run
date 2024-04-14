@@ -8,6 +8,8 @@ get_auth_token() {
 	$metadata_token_url | tr -d "\n"
 }
 
+echo "TOKEN: $(get_auth_token)"
+
 get_cloud_run_domain_name() {
 	curl \
 	-d "{\"service_name\": \"$SERVICE_NAME\"}" \

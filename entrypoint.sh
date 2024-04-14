@@ -18,6 +18,15 @@ get_cloud_run_domain_name() {
 	"$DOMAIN_FUNCTION_URL" | jq -r ".service_url" | tr -d "\n"
 }
 
+curl \
+-d "{\"service_name\": \"$SERVICE_NAME\"}" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $(get_auth_token)" \
+"$DOMAIN_FUNCTION_URL"|cat -e
+
+echo "SERVICE NAME: $SERVICE_NAME"
+echo "DOMAIN FUNC: $DOMAIN_FUNCTION_URL"
+
 domain_name="$(get_cloud_run_domain_name)"
 
 echo "DOMAIN NAME: $domain_name"

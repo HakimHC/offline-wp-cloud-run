@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:latest || exit 0']
+  args: ['-c', 'docker pull ${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:latest || exit 0']
 
 - name: 'gcr.io/cloud-builders/docker'
   id: 'Build image'

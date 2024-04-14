@@ -1,5 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
+  id: 'Pull latest docker image'
   entrypoint: 'bash'
   args: ['-c', 'docker pull ${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:latest || exit 0']
 
@@ -20,7 +21,14 @@ steps:
   id: 'Push image to registry'
   args: ['push', '${_LOCATION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/offline-wp:${SHORT_SHA}']
 
+- name: 'ubuntu'
+  id: 'Replace placeholders'
+  entrypoint: 'bash'
+  args:
+  - "-c sed -i 's/VPC_PLACEHOLDER/${_VPC}/' run-service.yaml && sed -i 's/SA_PLACEHOLDER/${_SA}/' run-service.yaml"
+
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  id: 'Launch Cloud Deploy pipeline'
   entrypoint: 'gcloud'
   args:
     - deploy

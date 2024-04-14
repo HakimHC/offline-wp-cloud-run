@@ -15,7 +15,7 @@ get_cloud_run_domain_name() {
         -d "{\"service_name\": \"$SERVICE_NAME\"}" \
         -H "Content-Type: application/json" \
         -H "Authorization: Bearer $(get_auth_token)" \
-        "$DOMAIN_FUNCTION_URL" | jq -r ".service_url" | tr -d "\n"
+        "$DOMAIN_FUNCTION_URL" 2>/dev/null | jq -r ".service_url" | tr -d "\n"
 }
 
 count=0
@@ -34,18 +34,12 @@ if [[ -z "$domain_name" ]]; then
         echo "Defaulting to $domain_name"
 fi
 
-curl \
--d "{\"service_name\": \"$SERVICE_NAME\"}" \
--H "Content-Type: application/json" \
--H "Authorization: Bearer $(get_auth_token)" \
-"$DOMAIN_FUNCTION_URL"|cat -e
-
 echo "SERVICE NAME: $SERVICE_NAME"
 echo "DOMAIN FUNC: $DOMAIN_FUNCTION_URL"
 
 echo "DOMAIN NAME: $domain_name"
 
-if ! wp core is-installed 2&gt;/dev/null; then
+if ! wp core is-installed 2>/dev/null; then
 
         wp core install --allow-root --url=$domain_name --title="Altostratus Wordpress Blog" \
         --admin_user="admin" \

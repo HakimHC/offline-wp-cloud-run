@@ -25,7 +25,8 @@ steps:
   id: 'Replace placeholders'
   entrypoint: 'bash'
   args:
-  - ["-c", "sed -i 's/VPC_PLACEHOLDER/${_VPC}/' 'run-service.yaml' && sed -i 's/SA_PLACEHOLDER/${_SA}/' 'run-service.yaml'"]
+  - -c
+  - "sed -i 's/VPC_PLACEHOLDER/${_VPC}/' 'run-service.yaml' && sed -i 's/SA_PLACEHOLDER/${_SA}/' 'run-service.yaml'"
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   id: 'Launch Cloud Deploy pipeline'

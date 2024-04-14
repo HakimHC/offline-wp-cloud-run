@@ -94,11 +94,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
 
-define('SSP_DEPLOYMENT_PROVIDER', 'github' );
+/*define('SSP_DEPLOYMENT_PROVIDER', 'github' );
 
 define( 'SSP_GITHUB', [
 	'github-personal-access-token' => getenv('SSP_GITHUB_TOKEN'),
 	'github-user'                  => getenv('SSP_GITHUB_USER'),
 	'github-repository'            => getenv('SSP_GITHUB_REPO'),
 	'github-branch'                => getenv('SSP_GITHUB_BRANCH')
-] );
+] );*/

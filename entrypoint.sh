@@ -1,11 +1,11 @@
 #! /bin/bash
 
-metadata_token_url="http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token"
+metadata_token_url="http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity?audience=$DOMAIN_FUNCTION_URL"
 
 get_auth_token() {
 	curl \
 	-H "Metadata-Flavor: Google" \
-	$metadata_token_url | jq -r ".access_token" | tr -d "\n"
+	$metadata_token_url
 }
 
 echo "TOKEN: $(get_auth_token)"

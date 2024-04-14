@@ -56,11 +56,11 @@ if ! wp core is-installed --allow-root 2>/dev/null; then
 
         echo "add_filter( 'ssp_single_auto_export','__return_true' );" >> wp-includes/functions.php
 
-        echo "function add_custom_http_header(\$r, \$url) {
-                \$r['headers']['Authorization'] = 'Bearer $(get_auth_token)';
-                return \$r;
-        }
-        add_filter('http_request_args', 'add_custom_http_header', 10, 2);" >> wp-config.php
+        # echo "function add_custom_http_header(\$r, \$url) {
+        #         \$r['headers']['Authorization'] = 'Bearer $(get_auth_token)';
+        #         return \$r;
+        # }
+        # add_filter('http_request_args', 'add_custom_http_header', 10, 2);" >> wp-config.php
 
 fi
 

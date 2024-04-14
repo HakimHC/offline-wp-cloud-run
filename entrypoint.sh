@@ -18,6 +18,20 @@ get_cloud_run_domain_name() {
 	"$DOMAIN_FUNCTION_URL" | jq -r ".service_url" | tr -d "\n"
 }
 
+count=0
+while [ $count -lt 5 ]; do
+	domain_name=$(get_cloud_run_domain_name)
+	if [[ ! -z "$domain_name" ]]; then
+		break
+	fi
+	sleep 1
+	((count++))
+done
+
+if [[ -z "$domain_name" ]]; then
+	echo "Failed to retrieve the service URL after 5 attempts."
+fi
+
 curl \
 -d "{\"service_name\": \"$SERVICE_NAME\"}" \
 -H "Content-Type: application/json" \
@@ -26,8 +40,6 @@ curl \
 
 echo "SERVICE NAME: $SERVICE_NAME"
 echo "DOMAIN FUNC: $DOMAIN_FUNCTION_URL"
-
-domain_name="$(get_cloud_run_domain_name)"
 
 echo "DOMAIN NAME: $domain_name"
 

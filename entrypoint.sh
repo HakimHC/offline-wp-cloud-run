@@ -5,7 +5,7 @@ metadata_token_url="http://metadata.google.internal/computeMetadata/v1/instance/
 get_auth_token() {
 	curl \
 	-H "Metadata-Flavor: Google" \
-	$metadata_token_url | tr -d "\n"
+	$metadata_token_url | jq -r ".access_token" | tr -d "\n"
 }
 
 echo "TOKEN: $(get_auth_token)"

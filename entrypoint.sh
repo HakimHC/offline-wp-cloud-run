@@ -20,6 +20,8 @@ get_cloud_run_domain_name() {
 
 domain_name="$(get_cloud_run_domain_name)"
 
+echo "DOMAIN NAME: $domain_name"
+
 # CONDITION HERE
 
 wp core install --allow-root --url=$domain_name --title="Altostratus Wordpress Blog" \

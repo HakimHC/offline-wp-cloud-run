@@ -24,7 +24,7 @@ while [ $count -lt 5 ]; do
 	if [[ ! -z "$domain_name" ]]; then
 		break
 	fi
-	sleep 1
+	sleep 5
 	((count++))
 done
 

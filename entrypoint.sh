@@ -42,10 +42,9 @@ echo "DOMAIN NAME: $domain_name"
 if ! wp core is-installed --allow-root 2>/dev/null; then
 
         wp core install --allow-root --url=$domain_name --title="Altostratus Wordpress Blog" \
-        --admin_user="admin" \
+        --admin_user="$WP_ADMIN_USER" \
+        --admin-password="$WP_ADMIN_PASSWORD" \
         --admin_email="admin@bootcamp.altostratus.es"
-
-        wp user create --allow-root $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PASSWORD
 
         wp theme activate --allow-root twentytwentythree
         wp plugin install --allow-root --activate simply-static

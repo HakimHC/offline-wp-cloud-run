@@ -43,7 +43,7 @@ if ! wp core is-installed --allow-root 2>/dev/null; then
 
         wp core install --allow-root --url=$domain_name --title="Altostratus Wordpress Blog" \
         --admin_user="$WP_ADMIN_USER" \
-        --admin-password="$WP_ADMIN_PASSWORD" \
+        --admin_password="$WP_ADMIN_PASSWORD" \
         --admin_email="admin@bootcamp.altostratus.es"
 
         wp theme activate --allow-root twentytwentythree

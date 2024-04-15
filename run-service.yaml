@@ -74,3 +74,18 @@ spec:
               secretKeyRef:
                 key: 1
                 name: SERVICE_NAME
+        - name: WP_USER
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: WP_USER
+        - name: WP_EMAIL
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: WP_EMAIL
+        - name: WP_PASSWORD
+          valueFrom:
+              secretKeyRef:
+                key: 1
+                name: WP_PASSWORD

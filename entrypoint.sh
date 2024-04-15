@@ -45,7 +45,7 @@ if ! wp core is-installed --allow-root 2>/dev/null; then
         --admin_user="admin" \
         --admin_email="admin@bootcamp.altostratus.es"
 
-       # TODO: Create user here 
+        wp user create --allow-root $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PASSWORD
 
         wp theme activate --allow-root twentytwentythree
         wp plugin install --allow-root --activate simply-static
@@ -55,14 +55,6 @@ if ! wp core is-installed --allow-root 2>/dev/null; then
         chown -R www-data:www-data /var/www/html/wp-content/uploads/simply-static/
 
         echo "add_filter( 'ssp_single_auto_export','__return_true' );" >> wp-includes/functions.php
-
-        # echo "function add_custom_http_header(\$r, \$url) {
-        #         \$r['headers']['Authorization'] = 'Bearer $(get_auth_token)';
-        #         return \$r;
-        # }
-        # add_filter('http_request_args', 'add_custom_http_header', 10, 2);" >> wp-config.php
-
 fi
-
 
 exec apache2-foreground
